@@ -6,7 +6,56 @@
   <title>Client Clinic - Hair & Weight PRP</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/Goodlife wellness clinic logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
+
+<!-- JAVA SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const track = document.getElementById("bannerTrack");
+  const slides = track.children;
+  const nextBtn = document.getElementById("nextBtn");
+
+  let index = 0;
+  const totalSlides = slides.length;
+  let slideTimer = null;
+  const SLIDE_DELAY = 4000; // 4 seconds
+
+  function updateSlide() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    index = (index + 1) % totalSlides;
+    updateSlide();
+    resetTimer(); // ✅ reset timer on manual slide
+  }
+
+  function startTimer() {
+    slideTimer = setInterval(() => {
+      index = (index + 1) % totalSlides;
+      updateSlide();
+    }, SLIDE_DELAY);
+  }
+
+  function resetTimer() {
+    clearInterval(slideTimer);
+    startTimer();
+  }
+
+  // Button click
+  nextBtn.addEventListener("click", nextSlide);
+
+  // Start auto sliding
+  startTimer();
+
+});
+</script>
+
+
+
 <body>
   <!-- ================== NAVBAR ================== -->
   <header class="site-header">
@@ -37,9 +86,25 @@
       </ul>
     </nav>
   </header>
+<br>
+<!-- ========== AUTO SLIDER BANNER ========== -->
+<section class="banner">
+  <div class="banner-track" id="bannerTrack">
+    <img src="images/banner.avif" alt="Slide 1">
+    <img src="images/banner2.jpg" alt="Slide 2">
+    <img src="images/banner3.jpg" alt="Slide 3">
+    <img src="images/banner4.avif" alt="Slide 4">
+  </div>
+
+  <button class="banner-next" id="nextBtn">›</button>
+</section>
+
+
+
 
   <!-- =============== HERO / BANNER SECTION =============== -->
   <main id="home">
+    <br>
     <section class="hero">
       <div class="hero__content">
         <h1>“Restoring Hair. Reviving Skin. Renewing Confidence.”</h1>
@@ -49,59 +114,34 @@
         <a href="contact.html" class="btn-primary">Contact us</a>
       </div>
 
-      <!-- Simple slider-style before/after layout (no JS) -->
-      <!-- Simple CSS-only slider with Next button -->
-<div class="hero__slider">
-  <!-- Hidden radios for each slide -->
-  <input type="radio" name="hero-slide" id="hero-slide-1" class="hero-slider__input" checked />
-  <input type="radio" name="hero-slide" id="hero-slide-2" class="hero-slider__input" />
-  <input type="radio" name="hero-slide" id="hero-slide-3" class="hero-slider__input" />
-  <input type="radio" name="hero-slide" id="hero-slide-4" class="hero-slider__input" />
-
-  <!-- Slides track -->
-  <div class="hero-slider__track">
-    <!-- Slide 1 -->
-    <div class="hero-slider__item">
-      <div class="hero-slider__image">
-        <img src="images/Yooshe Ansari.jpeg" alt="Client 1 before and after" />
+    </section>
+    
+     <section class="section testimony" id="testimony">
+      
+      <div class="testimony__card">
+        <img src="images/Yooshe Ansari.jpeg" alt="">
+        <p class="testimony__quote">
+          “I underwent GFC treatment followed by an exosome session, and the results were excellent. Hair fall reduced significantly and hair quality improved a lot. Very satisfied with the outcome.”
+        </p>
+        <p class="testimony__name">— Yooshe Ansari</p>
       </div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="hero-slider__item">
-      <div class="hero-slider__image">
-        <img src="images/Ravindra Kumar.jpeg" alt="Client 2 before and after" />
+      <div class="testimony__card">
+        <img src="images/Ravindra Kumar.jpeg" alt="">
+        <p class="testimony__quote">
+          “I underwent PRP treatment and I’m very satisfied with the results. Hair fall has reduced significantly and hair quality has improved. Overall, a very good experience.”
+        </p>
+        <p class="testimony__name">— R. Kumar</p>
       </div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="hero-slider__item">
-      <div class="hero-slider__image">
-        <img src="images/male  26.jpeg" alt="Client 3 before and after" />
       </div>
-    </div>
-    <!-- Slide 4 -->
-    <div class="hero-slider__item">
-      <div class="hero-slider__image">
-        <img src="images/female 35.jpeg" alt="Client 4 before and after" />
-      </div>
-    </div>
-  </div>
-
-  <!-- Next button that loops -->
-  <div class="hero-slider__controls">
-    <label for="hero-slide-2" class="hero-slider__next hero-slider__next--1">Next ➜</label>
-    <label for="hero-slide-3" class="hero-slider__next hero-slider__next--2">Next ➜</label>
-    <label for="hero-slide-4" class="hero-slider__next hero-slider__next--3">Next ➜</label>
-    <label for="hero-slide-1" class="hero-slider__next hero-slider__next--4">Next ➜</label>
-  </div>
+    </section>
+    <div class="testimony-action">
+  <a href="testimony.html" class="btn-primary btn-with-icon">
+    View More Testimony <span class="btn-icon">→</span>
+  </a>
 </div>
 
-
-    </section>
-
     <!-- =============== SERVICES SECTION =============== -->
-    <section class="section services" id="about">
+    <!-- <section class="section services" id="about">
       <div class="section__header">
         <h2>Our Services</h2>
         <p>
@@ -110,7 +150,7 @@
       </div>
 
       <div class="services__grid">
-        <!-- Service 1 -->
+        Service 1
         <article class="service-card">
           <h3>Hair PRP <br> (BIOTIN, GFC, EXOSOME)</h3>
           <p>
@@ -118,7 +158,7 @@
           </p>
         </article>
 
-        <!-- Service 2 -->
+        Service 2
         <article class="service-card">
           <h3>Dandruff Treatment</h3>
           <p>
@@ -126,7 +166,7 @@
           </p>
         </article>
 
-        <!-- Service 3 -->
+        Service 3
         <article class="service-card">
           <h3>Skin Glow & Renewal (skin PRP)</h3>
           <p>
@@ -136,15 +176,61 @@
         <a href="services.html" class="btn-primary">KNOW MORE ABOUT OUR SERVICES</a>
         
       </div>
-    </section>
-
-   
+    </section> -->
+    <br>
+   <br>
   </main>
 
-  <!-- =============== FOOTER =============== -->
-  <footer class="site-footer">
-    <p>&copy; 2026 ClientClinic. All rights reserved.</p>
-    <p>Website by Your Name. Contact placeholder.</p>
-  </footer>
+ <!-- =============== FOOTER MAIN (BLACK) =============== -->
+<!-- =============== FOOTER MAIN =============== -->
+<footer class="footer-main">
+  <div class="contact__note">
+
+    <p>
+      <i class="fa-solid fa-phone"></i>
+      <strong>Phone:</strong>
+      <a href="tel:+919372480072">+91-9372480072</a>
+    </p>
+
+    <p>
+      <i class="fa-brands fa-instagram"></i>
+      <strong>Instagram:</strong>
+      <a href="https://www.instagram.com/dr.sadafkande_" target="_blank">
+        @dr.sadafkande_
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-solid fa-envelope"></i>
+      <strong>Email:</strong>
+      <a href="mailto:goodlifehomeopathyclinic@gmail.com">
+        goodlifehomeopathyclinic@gmail.com
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-solid fa-envelope"></i>
+      <strong>Email:</strong>
+      <a href="mailto:dr.sadafamjadkande@gmail.com">
+        dr.sadafamjadkande@gmail.com
+      </a>
+    </p>
+
+    <p>
+      <i class="fa-solid fa-location-dot"></i>
+      <strong>Address:</strong>
+      GoodLife Wellness Clinic, SS4/246, Sector 2, Vashi, Navi Mumbai
+    </p>
+
+  </div>
+</footer>
+
+<!-- =============== FOOTER BOTTOM (COPYRIGHT) =============== -->
+<footer class="footer-bottom">
+  <p>&copy; 2026 GoodLife Wellness Clinic. All rights reserved.</p>
+</footer>
+
+
+
 </body>
 </html>
