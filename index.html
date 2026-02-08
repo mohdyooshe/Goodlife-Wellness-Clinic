@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const track = document.getElementById("bannerTrack");
   const slides = track.children;
+
   const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
   let index = 0;
   const totalSlides = slides.length;
@@ -32,7 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function nextSlide() {
     index = (index + 1) % totalSlides;
     updateSlide();
-    resetTimer(); // ✅ reset timer on manual slide
+    resetTimer();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + totalSlides) % totalSlides;
+    updateSlide();
+    resetTimer();
   }
 
   function startTimer() {
@@ -47,15 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
     startTimer();
   }
 
-  // Button click
+  // Button clicks
   nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
 
   // Start auto sliding
   startTimer();
 
 });
 </script>
-
 
 
 <body>
@@ -92,11 +100,12 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- ========== AUTO SLIDER BANNER ========== -->
 <section class="banner">
   <div class="banner-track" id="bannerTrack">
-    <img src="images/banner.avif" alt="Slide 1">
-    <img src="images/banner2.jpg" alt="Slide 2">
-    <img src="images/banner3.jpg" alt="Slide 3">
+    <img src="images/pc1.png" alt="Slide 1">
+    <img src="images/pc.png" alt="Slide 2">
+    <img src="images/mobile.png" alt="Slide 3">
     <img src="images/banner4.avif" alt="Slide 4">
   </div>
+  <button class="banner-prev" id="prevBtn">‹</button>
 
   <button class="banner-next" id="nextBtn">›</button>
 </section>
