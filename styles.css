@@ -870,64 +870,84 @@ html, body {
     height: auto !important;
   }
 }
-/* ===============================
-   FIXED BANNER SLIDER (PC + MOBILE)
-   =============================== */
+  /* ===============================
+    FIXED BANNER SLIDER (PC + MOBILE)
+    =============================== */
 
-.banner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
-  border-radius: 16px;
-}
+  .banner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+  }
 
-/* Slider track */
-.banner-track {
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
+  /* Slider track */
+  .banner-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+  }
 
-/* Slides */
-.banner-track img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-/* Next button */
-.banner-next {
+  /* Slides */
+  .banner-track img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+/* Previous button */
+.banner-prev {
   position: absolute;
   top: 50%;
-  right: 12px;
+  left: 14px;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
   font-size: 28px;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
 }
 
-.banner-next:hover {
+.banner-prev:hover {
   background: rgba(0, 0, 0, 0.65);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .banner {
-    max-width: 100%;
-    border-radius: 0;
+  /* Next button */
+  .banner-next {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    border: none;
+    font-size: 28px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
   }
 
-  .banner-track img {
-    height: 235px;
+  .banner-next:hover {
+    background: rgba(0, 0, 0, 0.65);
   }
-}
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .banner {
+      max-width: 100%;
+      border-radius: 0;
+    }
+
+    .banner-track img {
+      height: 235px;
+    }
+  }
 
 
 /* Animation */
