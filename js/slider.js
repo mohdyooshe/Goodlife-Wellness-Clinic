@@ -1,3 +1,4 @@
+// banner slider
 document.addEventListener("DOMContentLoaded", function () {
 
   const track = document.getElementById("bannerTrack");
@@ -48,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// video slider
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const videoTrack = document.getElementById("videoTrack");
@@ -70,27 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
       `translateX(-${index * getSlideWidth()}px)`;
   }
 
-  nextBtn.addEventListener("click", () => {
-    const maxIndex = videoCards.length - getVisibleCount();
-    index = (index + 1) > maxIndex ? 0 : index + 1;
-    updateSlide();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    const maxIndex = videoCards.length - getVisibleCount();
-    index = (index - 1) < 0 ? maxIndex : index - 1;
-    updateSlide();
-  });
-
-  // Pause other videos when one plays
+  function pauseAllVideos() {
   const videos = document.querySelectorAll(".video-card video");
   videos.forEach(video => {
-    video.addEventListener("play", () => {
-      videos.forEach(v => {
-        if (v !== video) v.pause();
-      });
-    });
+    video.pause();
+    video.currentTime = 0;
   });
+}
+
+nextBtn.addEventListener("click", () => {
+  const maxIndex = videoCards.length - getVisibleCount();
+  index = (index + 1) > maxIndex ? 0 : index + 1;
+
+  pauseAllVideos();   // 🔥 stop playing video
+  updateSlide();
+});
+
+prevBtn.addEventListener("click", () => {
+  const maxIndex = videoCards.length - getVisibleCount();
+  index = (index - 1) < 0 ? maxIndex : index - 1;
+
+  pauseAllVideos();   // 🔥 stop playing video
+  updateSlide();
+});
+
 
   window.addEventListener("resize", () => {
     index = 0;          // reset on resize
