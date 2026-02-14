@@ -98,3 +98,61 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+// ================= ABOUT SLIDER =================
+const aboutTrack = document.getElementById("aboutTrack");
+const aboutPrev = document.getElementById("aboutPrev");
+const aboutNext = document.getElementById("aboutNext");
+
+let aboutIndex = 0;
+const aboutSlides = aboutTrack.children;
+const totalAboutSlides = aboutSlides.length;
+
+let autoSlide;
+
+// Update slider position
+function updateAboutSlider() {
+  aboutTrack.style.transform = `translateX(-${aboutIndex * 100}%)`;
+}
+
+// Start auto slide
+function startAutoSlide() {
+  autoSlide = setInterval(() => {
+    aboutIndex = (aboutIndex + 1) % totalAboutSlides;
+    updateAboutSlider();
+  }, 4000);
+}
+
+// Reset timer
+function resetAutoSlide() {
+  clearInterval(autoSlide);
+  startAutoSlide();
+}
+
+// Next button
+aboutNext.addEventListener("click", () => {
+  aboutIndex = (aboutIndex + 1) % totalAboutSlides;
+  updateAboutSlider();
+  resetAutoSlide();  // 🔥 timer resets here
+});
+
+// Previous button
+aboutPrev.addEventListener("click", () => {
+  aboutIndex = (aboutIndex - 1 + totalAboutSlides) % totalAboutSlides;
+  updateAboutSlider();
+  resetAutoSlide();  // 🔥 timer resets here
+});
+
+// Pause on hover
+aboutTrack.addEventListener("mouseenter", () => {
+  clearInterval(autoSlide);
+});
+
+// Resume on leave
+aboutTrack.addEventListener("mouseleave", () => {
+  resetAutoSlide();
+});
+
+// Start initially
+startAutoSlide();
